@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="assets/jquery-3.2.1.js"></script>
+    <script>
+        function getStudents() {
+            document.getElementById("comboStudents").length = 0;
+            $.ajax(
+                {
+                    url: "http://localhost:8080/Hello_JWS_war_exploded/api/student-api/viewAll",
+                    type: 'GET',
+                    // data :
+                    //     {
+                    //         'rawItemArray' : newRawItemArray
+                    //     },
+                    dataType:'JSON',
+                    success: function(data)
+                    {
+                        alert(data);
+                    },
+                    error : function(request,error)
+                    {
+                        alert(error);
+                    }
+                });
+        }
+    </script>
+</head>
+<title>Attendance System</title>
+<body>
+<form>
+    <select name="comboStudents" id="comboStudents">
+    </select>
+    <input type="button" onclick="getStudents()" value="Click TO Call Web Service">
+</form>
+
+</body>
+</html>
