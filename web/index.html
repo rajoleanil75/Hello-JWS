@@ -4,19 +4,26 @@
     <script type="text/javascript" src="assets/jquery-3.2.1.js"></script>
     <script>
         function getStudents() {
-            document.getElementById("comboStudents").length = 0;
+            var tbl = document.getElementById('tbl');
             $.ajax(
                 {
                     url: "http://localhost:8080/Hello_JWS_war_exploded/api/student-api/viewAll",
                     type: 'GET',
-                    // data :
-                    //     {
-                    //         'rawItemArray' : newRawItemArray
-                    //     },
+                    data :
+                        {
+                            'student_roll' : 54
+                        },
                     dataType:'JSON',
                     success: function(data)
                     {
-                        alert(data);
+                        for(var i=1;i<data.length+1;i++)
+                        {
+                            var x=tbl.insertRow(i);
+                            x.insertCell(0);
+                            x.insertCell(1);
+                            tbl.rows[i].cells[0].innerHTML=data[i-1]["roll"];
+                            tbl.rows[i].cells[1].innerHTML=data[i-1]["name"];
+                        }
                     },
                     error : function(request,error)
                     {
@@ -26,12 +33,21 @@
         }
     </script>
 </head>
-<title>Attendance System</title>
+<title>Simple Web Service</title>
 <body>
+<h1>Simple Web Service Demo</h1>
 <form>
-    <select name="comboStudents" id="comboStudents">
-    </select>
-    <input type="button" onclick="getStudents()" value="Click TO Call Web Service">
+    <input type="button" onclick="getStudents()" value="Show Student List">
+
+    <br>
+    <br>
+
+    <table id="tbl"  border="double">
+        <thead>
+        <th>Roll No</th>
+        <th>Name</th>
+        </thead>
+    </table>
 </form>
 
 </body>

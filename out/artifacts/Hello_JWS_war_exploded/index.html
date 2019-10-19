@@ -4,6 +4,7 @@
     <script type="text/javascript" src="assets/jquery-3.2.1.js"></script>
     <script>
         function getStudents() {
+            var tbl = document.getElementById('tbl');
             document.getElementById("comboStudents").length = 0;
             $.ajax(
                 {
@@ -16,7 +17,15 @@
                     dataType:'JSON',
                     success: function(data)
                     {
-                        alert(data);
+                        // alert(data);
+                        for(var i=1;i<data.length;i++)
+                        {
+                            var x=tbl.insertRow(i);
+                            x.insertCell(0);
+                            x.insertCell(1);
+                            tbl.rows[i].cells[0].innerHTML=data1[i-1]["roll"];
+                            tbl.rows[i].cells[1].innerHTML=data1[i-1]["name"];
+                        }
                     },
                     error : function(request,error)
                     {
@@ -26,7 +35,7 @@
         }
     </script>
 </head>
-<title>Attendance System</title>
+<title>Simple Web Service</title>
 <body>
 <form>
     <select name="comboStudents" id="comboStudents">
