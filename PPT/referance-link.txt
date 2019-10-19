@@ -1,0 +1,11 @@
+Glassfish Referance
+    https://javaee.github.io/glassfish/
+
+Jersey Referance
+    https://eclipse-ee4j.github.io/jersey/
+
+Datatable Referance
+    https://datatables.net/
+
+Select2 Referance
+    https://select2.org/
